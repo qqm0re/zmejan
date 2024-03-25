@@ -1,17 +1,17 @@
 #include <graphics.h>
-#include <ctime>                        // required for generating random numbers
+#include <ctime>                        // требуется для генерации случайных чисел
 
 class food
 {
 private:
-        POS foodPos;                    // position
+        POS foodPos;                    // ПОзиция
 public :
-        void draw();                    // functtion to draw the food on the graphics window
-        void generate(int, int);        // function to generate food everytime snake eats it
-        bool update(int, int);          // this is to give us the status of food(whether it is been eaten or not)
+        void draw();                    // функция для рисования еды в окне
+        void generate(int, int);        // функция для получения фруктов каждый раз, когда змея их съедает
+        bool update(int, int);          // дает нам статус фрукта (вне зависимости сьеден он или нет)
 };
 
-void food::draw()                       // DRAW THE FOOD
+void food::draw()                       // Отрисовка Фруктов
 {
      setcolor(RED);
      rectangle(foodPos.x, foodPos.y, foodPos.x+30, foodPos.y+30);
@@ -19,7 +19,7 @@ void food::draw()                       // DRAW THE FOOD
      floodfill(foodPos.x+15, foodPos.y+15, RED);
 }
 
-void food::generate(int snakeHeadx, int snakeHeady)     // GENERATE NEW POSITION FOR THE PARTICLE
+void food::generate(int snakeHeadx, int snakeHeady)     // Генерация новой позиции фрукта
 {
      srand(time(0));
      foodPos.x = 30*(rand()%15 + 1);
@@ -29,7 +29,7 @@ void food::generate(int snakeHeadx, int snakeHeady)     // GENERATE NEW POSITION
           generate(snakeHeadx, snakeHeady);
 }
 
-bool food::update(int snakeHeadx, int snakeHeady)       // GIVE US THE STATUS OF THAT DAMN FOOD !!
+bool food::update(int snakeHeadx, int snakeHeady)       // Сообщает статус фрукта
 {
      if (foodPos.x == snakeHeadx && foodPos.y == snakeHeady)
           return true;
